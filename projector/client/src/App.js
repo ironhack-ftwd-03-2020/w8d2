@@ -1,12 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Projects from './components/Projects';
 import Navbar from './components/Navbar';
 import ProjectDetails from './components/ProjectDetails';
 import TaskDetails from './components/TaskDetails';
 import Signup from './components/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
 
 class App extends React.Component {
 
@@ -25,8 +27,22 @@ class App extends React.Component {
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
 
-        <Route
+        {/* <Route
           exact path='/projects'
+          component={Projects}
+        /> */}
+        {/* this route is now protected */}
+        {/* <Route
+          exact path='/projects'
+          render={props => {
+            if (this.state.user) return <Projects {...props} />
+            else return <Redirect to='/' />
+          }}
+        /> */}
+        <ProtectedRoute
+          exact path='/projects'
+          // additional='some additional prop'
+          user={this.state.user}
           component={Projects}
         />
         <Route
@@ -40,6 +56,10 @@ class App extends React.Component {
         <Route
           exact path='/signup'
           render={props => <Signup setUser={this.setUser} {...props} />}
+        />
+        <Route
+          exact path='/login'
+          render={props => <Login setUser={this.setUser} {...props} />}
         />
       </div>
     );

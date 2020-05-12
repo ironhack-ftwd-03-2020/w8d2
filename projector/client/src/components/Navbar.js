@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Navbar as Nav } from 'react-bootstrap';
+import { logout } from '../services/auth';
 
-
+const handleLogout = props => {
+  logout().then(() => {
+    props.setUser(null);
+  });
+}
 
 const Navbar = props => {
   return (
@@ -17,9 +22,9 @@ const Navbar = props => {
             <Link to='/projects'>Projects</Link>
           </Nav.Brand>
           <Nav.Brand>
-            {/* <Link to='/' onClick={() => handleLogout(props)}> */}
+            <Link to='/' onClick={() => handleLogout(props)}>
               Logout
-            {/* </Link> */}
+            </Link>
           </Nav.Brand>
         </>
       ) : (

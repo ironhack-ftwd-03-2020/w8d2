@@ -91,13 +91,21 @@ export default class ProjectDetails extends Component {
     console.log(this.state.taskForm);
     if (this.state.error) return <div>{this.state.error}</div>
     if (!this.state.project) return (<></>)
-    else return (
+
+    let allowedToDelete = false;
+    const user = this.props.user;
+    const owner = this.state.project.owner;
+    if (user && user._id === owner) allowedToDelete = true;
+
+    return (
       <div>
         <h1>{this.state.project.title}</h1>
         <p>{this.state.project.description}</p>
-        <Button variant='danger' onClick={this.deleteProject}>
-          Delete this project
-        </Button>
+        {allowedToDelete && (
+          <Button variant='danger' onClick={this.deleteProject}>
+            Delete this project
+          </Button>
+        )}
         <Button onClick={this.toggleEditForm}>Show edit form</Button>
         <Button onClick={this.toggleTaskForm}>Show task form</Button>
         {this.state.editForm && (

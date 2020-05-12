@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-export default class ProjectDetails extends Component {
+export default class TaskDetails extends Component {
   state = {
     title: '',
     description: '',
