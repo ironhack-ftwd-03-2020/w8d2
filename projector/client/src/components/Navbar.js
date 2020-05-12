@@ -5,11 +5,15 @@ import { Navbar as Nav } from 'react-bootstrap';
 const Navbar = props => {
   return (
     <Nav className='nav justify-content-end' bg='primary'>
+      {props.user && <Nav.Brand>Hello {props.user.username}</Nav.Brand>}
       <Nav.Brand>
         <Link to='/'>Home</Link>
       </Nav.Brand>
       <Nav.Brand>
         <Link to='/projects'>Projects</Link>
+      </Nav.Brand>
+      <Nav.Brand>
+        <Link to='/signup'>Signup</Link>
       </Nav.Brand>
     </Nav>
   )
