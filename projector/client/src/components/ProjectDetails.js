@@ -101,11 +101,9 @@ export default class ProjectDetails extends Component {
       <div>
         <h1>{this.state.project.title}</h1>
         <p>{this.state.project.description}</p>
-        {allowedToDelete && (
-          <Button variant='danger' onClick={this.deleteProject}>
-            Delete this project
+        <Button variant='danger' onClick={this.deleteProject}>
+          Delete this project
           </Button>
-        )}
         <Button onClick={this.toggleEditForm}>Show edit form</Button>
         <Button onClick={this.toggleTaskForm}>Show task form</Button>
         {this.state.editForm && (
